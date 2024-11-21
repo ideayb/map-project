@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Map with Message Box Markers</title>
+    <title>MARCKRIS 22nd Birthday Project Map</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         #map {
@@ -129,9 +129,12 @@
     var element = marker.getElement();
     element.style.backgroundImage = `url(${location.imageUrl})`;
 
-    // Add click event to zoom in on the map
+    // Add click event to zoom in on the map with offset
     element.addEventListener('click', function() {
-        map.setView(location.coords, 16); // Adjust the zoom level as needed
+        const offset = map.getSize().y * 0.03; // Calculate 25% from the bottom
+        const targetPoint = map.project(location.coords).subtract([0, offset]);
+        const targetLatLng = map.unproject(targetPoint);
+        map.setView(targetLatLng, 16); // Adjust the zoom level as needed
     });
 
     marker.bindPopup(location.details);

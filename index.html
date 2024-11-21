@@ -11,44 +11,48 @@
             width: 100%;
         }
         .message-box {
-    position: relative;
-    width: 80px;
-    height: 60px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    border: 4px solid #007bff;
-    background-color: #007bff;
-    background-size: cover; /* Ensures the image covers the entire box */
-    background-position: center; /* Centers the image */
-}
-
-.message-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures the image covers the entire box */
-    object-position: center; /* Centers the image */
-}
-
-.message-box::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 10px solid #007bff;
-}
-.leaflet-popup-content {
-            max-width: 300px; /* Set a maximum width for the popup */
-            max-height: 400px; /* Set a maximum height for the popup */
-            overflow: auto; /* Enable scrolling if content overflows */
+            position: relative;
+            width: 80px;
+            height: 60px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            border: 4px solid #007bff;
+            background-color: #007bff;
+            background-size: cover;
+            background-position: center;
+        }
+        .message-box::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #007bff;
+        }
+        .badge {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: white;
+            color: black;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+        }
+        .leaflet-popup-content {
+            max-width: 300px;
+            max-height: 400px;
+            overflow: auto;
         }
         .twitter-tweet {
-            margin: 0 auto; /* Center the tweet within the popup */
+            margin: 0 auto;
         }        
     </style>
 </head>
@@ -72,60 +76,79 @@
                 coords: [13.8133689, 100.5619903], 
                 details: `
                     <div class="popup-content">
-                        <h3>Event Details</h3>
-                        <p>Join us for the MARCKRIS Birthday Event 2024!</p>
+                        <h3>Union Mall</h3>
+                        <p>MARCKRIS SQUARE & Digital Media</p>
                         <blockquote class="twitter-tweet"><p lang="th" dir="ltr">🏙️🎂<br><br>[ 𝐌𝐀𝐑𝐂𝐊𝐑𝐈𝐒 𝐁𝐈𝐑𝐓𝐇𝐃𝐀𝐘 𝐏𝐑𝐎𝐉𝐄𝐂𝐓 𝐄𝐏. 𝟎𝟐 ]<br><br>MARCKRIS BIRTHDAY EVENT 2024<br><br>เตรียมพบกับงานอีเว้นท์ ที่รวบรวมทุกกิจกรรม และความสุข ภายใต้มวลความอบอุ่นของกลุ่มคนที่รักมาร์คคริสเข้าไว้ด้วยกัน <br><br>🗓️ 7-8 December 2024<br>⏰ 11:00 - 20:00 น.<br>📍G FL, UNION CO-EVENT… <a href="https://t.co/8m3A0Kkwiv">pic.twitter.com/8m3A0Kkwiv</a></p>&mdash; TEAM MARCKRIS (@TEAMMARCKRIS) <a href="https://twitter.com/TEAMMARCKRIS/status/1856290884339544290?ref_src=twsrc%5Etfw">November 12, 2024</a></blockquote>
+			<blockquote class="twitter-tweet">
+                    		<a href="https://x.com/teammarckris/status/1858385967985627226"></a>
+                	</blockquote>
+			<blockquote class="twitter-tweet">
+                    		<a href="https://x.com/teammarckris/status/1858465163466379304"></a>
+                	</blockquote>
+
                     </div>
                 `,
-                imageUrl: 'https://pbs.twimg.com/media/GcLetmvasAQxV-N?format=jpg&name=4096x4096' // Replace with your image URL
+                imageUrl: 'https://pbs.twimg.com/media/GcLetmvasAQxV-N?format=jpg&name=4096x4096', // Replace with your image URL
+                tweetCount: 3 // Number of tweets
             },
             { 
-                coords: [13.7446343, 100.5325835], 
+                coords: [13.7446343, 100.5298835], 
                 details: `
-                    <div class="popup-content">
-                        <h3>Event Details</h3>
-                        <p>Join us for the MARCKRIS Birthday Event 2024!</p>
-                        <blockquote class="twitter-tweet"><p lang="th" dir="ltr">🏙️🎂<br><br>[ 𝐌𝐀𝐑𝐂𝐊𝐑𝐈𝐒 𝐁𝐈𝐑𝐓𝐇𝐃𝐀𝐘 𝐏𝐑𝐎𝐉𝐄𝐂𝐓 𝐄𝐏. 𝟎𝟐 ]<br><br>MARCKRIS BIRTHDAY EVENT 2024<br><br>เตรียมพบกับงานอีเว้นท์ ที่รวบรวมทุกกิจกรรม และความสุข ภายใต้มวลความอบอุ่นของกลุ่มคนที่รักมาร์คคริสเข้าไว้ด้วยกัน <br><br>🗓️ 7-8 December 2024<br>⏰ 11:00 - 20:00 น.<br>📍G FL, UNION CO-EVENT… <a href="https://t.co/8m3A0Kkwiv">pic.twitter.com/8m3A0Kkwiv</a></p>&mdash; TEAM MARCKRIS (@TEAMMARCKRIS) <a href="https://twitter.com/TEAMMARCKRIS/status/1856290884339544290?ref_src=twsrc%5Etfw">November 12, 2024</a></blockquote>
-                    </div>
-                `,
-                imageUrl: 'https://pbs.twimg.com/media/Gc0rcNRbQAEL-ay?format=jpg&name=4096x4096' // Replace with your image URL
+            <div class="popup-content">
+                <h3>MBK</h3>
+                <p>Digital Media</p>
+                <blockquote class="twitter-tweet">
+                    <a href="https://x.com/TEAMMARCKRIS/status/1857015927495151854"></a>
+                </blockquote>
+
+            </div>
+        `,
+                imageUrl: 'https://pbs.twimg.com/amplify_video_thumb/1857015667003715586/img/b7HJHa_wfeVUQB07.jpg', // Replace with your image URL
+                tweetCount: 1
             },
-            { 
-                coords: [51.525, -0.11], 
-                details: "Location 3: London Location 2",
-                imageUrl: 'https://example.com/path/to/image3.png' // Replace with your image URL
-            },
-            { 
-                coords: [51.535, -0.12], 
-                details: "Location 4: London Location 3",
-                imageUrl: 'https://example.com/path/to/image4.png' // Replace with your image URL
-            },
-            { 
-                coords: [51.545, -0.13], 
-                details: "Location 5: London Location 4",
-                imageUrl: 'https://example.com/path/to/image5.png' // Replace with your image URL
+		{ 
+                coords: [13.7453557,100.534988], 
+                details: `
+            <div class="popup-content">
+                <h3>Siam</h3>
+                <p>TukTuks</p>
+                <blockquote class="twitter-tweet">
+                    <a href="https://x.com/teammarckris/status/1858117952736010697"></a>
+                </blockquote>
+
+            </div>
+        `,
+                imageUrl: 'https://pbs.twimg.com/tweet_video_thumb/GclcZmCaQAAgjuu.jpg', // Replace with your image URL
+                tweetCount: 1
             }
+
         ];
 
         // Add markers for each location using custom icons
         locations.forEach(function(location) {
     var customIcon = L.divIcon({
         className: 'message-box',
-        html: '',
+        html: `<div class="badge">${location.tweetCount}</div>`,
         iconSize: [80, 70],
         iconAnchor: [40, 70],
         popupAnchor: [0, -70]
     });
 
     var marker = L.marker(location.coords, { icon: customIcon }).addTo(map);
-            marker.getElement().style.backgroundImage = `url(${location.imageUrl})`;
-            marker.bindPopup(location.details);
+    var element = marker.getElement();
+    element.style.backgroundImage = `url(${location.imageUrl})`;
 
-            // Ensure Twitter widgets are rendered when the popup opens
-            marker.on('popupopen', function() {
-                twttr.widgets.load();
-            });
+    // Add click event to zoom in on the map
+    element.addEventListener('click', function() {
+        map.setView(location.coords, 17); // Adjust the zoom level as needed
+    });
 
+    marker.bindPopup(location.details);
+
+    // Ensure Twitter widgets are rendered when the popup opens
+    marker.on('popupopen', function() {
+        twttr.widgets.load();
+    });
 });
     </script>
 </body>

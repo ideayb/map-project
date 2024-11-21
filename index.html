@@ -3,47 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Map with Pin and Popup</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <title>Map with Multiple Twitter Snippets</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         #map {
             height: 100vh;
-        }
-        .popup-content {
-            text-align: center;
+            width: 100%;
         }
     </style>
 </head>
 <body>
     <div id="map"></div>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <script>
-        // Initialize the map
-        var map = L.map('map').setView([51.505, -0.09], 13); // Set initial view to specific coordinates
+        // Initialize the map and set its view to a specific location and zoom level
+        var map = L.map('map').setView([13.8133689, 100.5619903], 17);
 
         // Add OpenStreetMap tiles
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
-            attribution: '© OpenStreetMap'
+            attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        // Add a pin with a custom icon
-        var customIcon = L.icon({
-            iconUrl: 'https://example.com/path/to/your/image.png', // Replace with your image URL
-            iconSize: [38, 38], // Size of the icon
-            iconAnchor: [22, 94], // Point of the icon which will correspond to marker's location
-            popupAnchor: [-3, -76] // Point from which the popup should open relative to the iconAnchor
+        // Define an array of locations with coordinates and details
+        var locations = [
+            { 
+                coords: [13.8133689, 100.5619903], 
+                details: `
+                    <div>
+                        <h3>Event Details</h3>
+                        <p>Join us for the MARCKRIS Birthday Event 2024!</p>
+                        <blockquote class="twitter-tweet"><p lang="th" dir="ltr">🏙️🎂<br><br>[ 𝐌𝐀𝐑𝐂𝐊𝐑𝐈𝐒 𝐁𝐈𝐑𝐓𝐇𝐃𝐀𝐘 𝐏𝐑𝐎𝐉𝐄𝐂𝐓 𝐄𝐏. 𝟎𝟐 ]<br><br>MARCKRIS BIRTHDAY EVENT 2024<br><br>เตรียมพบกับงานอีเว้นท์ ที่รวบรวมทุกกิจกรรม และความสุข ภายใต้มวลความอบอุ่นของกลุ่มคนที่รักมาร์คคริสเข้าไว้ด้วยกัน <br><br>🗓️ 7-8 December 2024<br>⏰ 11:00 - 20:00 น.<br>📍G FL, UNION CO-EVENT… <a href="https://t.co/8m3A0Kkwiv">pic.twitter.com/8m3A0Kkwiv</a></p>&mdash; TEAM MARCKRIS (@TEAMMARCKRIS) <a href="https://twitter.com/TEAMMARCKRIS/status/1856290884339544290?ref_src=twsrc%5Etfw">November 12, 2024</a></blockquote>
+                        <blockquote class="twitter-tweet"><p lang="en" dir="ltr">🎵🎂<br><br>[ 𝐓𝐡𝐞 𝐒𝐩𝐞𝐜𝐢𝐚𝐥 𝐒𝐢𝐧𝐠𝐥𝐞<a href="https://twitter.com/hashtag/%F0%9D%90%8C%F0%9D%90%80%F0%9D%90%91%F0%9D%90%82%F0%9D%90%8A%F0%9D%90%91%F0%9D%90%88%F0%9D%90%92?src=hash&amp;ref_src=twsrc%5Etfw">#𝐌𝐀𝐑𝐂𝐊𝐑𝐈𝐒</a> 𝐅𝐀𝐍𝐒𝐎𝐍𝐆 ]<br><br>ขอบคุณมาก (Appreciate) - Better Weather <br><br>Music Release Planning <br>⏰ 20.11.2024 | 6PM <a href="https://twitter.com/Marckrisk?ref_src=twsrc%5Etfw">@Marckrisk</a> <a href="https://twitter.com/hashtag/MARCKRIS?src=hash&amp;ref_src=twsrc%5Etfw">#MARCKRIS</a> <a href="https://twitter.com/BetterWeatherBW?ref_src=twsrc%5Etfw">@BetterWeatherBW</a> <a href="https://twitter.com/hashtag/22ndMARCKRISquare?src=hash&amp;ref_src=twsrc%5Etfw">#22ndMARCKRISquare</a><a href="https://twitter.com/hashtag/BUSbecauseofyouishine?src=hash&amp;ref_src=twsrc%5Etfw">#BUSbecauseofyouishine</a> <a href="https://t.co/6cuXH712dZ">pic.twitter.com/6cuXH712dZ</a></p>&mdash; TEAM MARCKRIS (@TEAMMARCKRIS) <a href="https://twitter.com/TEAMMARCKRIS/status/1858857838879404039?ref_src=twsrc%5Etfw">November 19, 2024</a></blockquote>
+                    </div>
+                `
+            },
+            { coords: [51.515, -0.1], details: "Location 2: London Location 1" },
+            { coords: [51.525, -0.11], details: "Location 3: London Location 2" },
+            { coords: [51.535, -0.12], details: "Location 4: London Location 3" },
+            { coords: [51.545, -0.13], details: "Location 5: London Location 4" }
+        ];
+
+        // Add markers for each location
+        locations.forEach(function(location) {
+            var marker = L.marker(location.coords).addTo(map);
+            marker.bindPopup(location.details);
         });
-
-        var marker = L.marker([51.505, -0.09], { icon: customIcon }).addTo(map);
-
-        // Add a popup to the marker
-        marker.bindPopup("<div class='popup-content'><p>Tweet Snippet: This is a sample tweet.</p><button onclick='showNext()'>Next</button></div>");
-
-        // Function to show the next tweet or content
-        function showNext() {
-            alert('Show next tweet or content here.');
-        }
     </script>
 </body>
 </html>

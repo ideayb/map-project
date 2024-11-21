@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map with Pin and Popup</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 100vh;
+        }
+        .popup-content {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([51.505, -0.09], 13); // Set initial view to specific coordinates
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // Add a pin with a custom icon
+        var customIcon = L.icon({
+            iconUrl: 'https://example.com/path/to/your/image.png', // Replace with your image URL
+            iconSize: [38, 38], // Size of the icon
+            iconAnchor: [22, 94], // Point of the icon which will correspond to marker's location
+            popupAnchor: [-3, -76] // Point from which the popup should open relative to the iconAnchor
+        });
+
+        var marker = L.marker([51.505, -0.09], { icon: customIcon }).addTo(map);
+
+        // Add a popup to the marker
+        marker.bindPopup("<div class='popup-content'><p>Tweet Snippet: This is a sample tweet.</p><button onclick='showNext()'>Next</button></div>");
+
+        // Function to show the next tweet or content
+        function showNext() {
+            alert('Show next tweet or content here.');
+        }
+    </script>
+</body>
+</html>

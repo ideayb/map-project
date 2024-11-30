@@ -444,6 +444,11 @@
             });
 
         });
+        const locationListTitle = document.getElementById('location-list-title');
+        locationListTitle.addEventListener('click', () => {
+            // Zoom out to level 2
+            map.setView([13.62312, 20.03906], 1);
+        });
     </script>
 </body>
 

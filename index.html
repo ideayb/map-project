@@ -53,11 +53,6 @@
             /* Dynamically adjust font size */
         }
 
-        #location-list-container {
-            background-color: white;
-            border-bottom: 1px solid #ddd;
-            width: 100%;
-        }
 
         #location-list-title {
             padding: 10px;
@@ -70,7 +65,7 @@
         }
 
         #location-list {
-            display: none;
+            display: block;
             padding: 10px;
             /* Keep padding for content spacing */
             margin: 0;
@@ -125,8 +120,7 @@
             flex: 0 0 auto;
             /* Prevent the map from shrinking */
             width: 100%;
-            height: 100vh;
-            /* Always take up 100% of the viewport height */
+            height: 80vh;
         }
 
         .message-box {
@@ -183,14 +177,11 @@
 <body>
     <div id="header">🎁🦖✨<br>
         MARCKRIS 22nd Birthday Project Locations</div>
-    <div id="content">
-        <!-- Collapsible Location List Section -->
-        <div id="location-list-container">
-            <div id="location-list-title">See all locations</div>
-            <div id="location-list"></div>
-        </div>
-    </div>
     <div id="map"></div>
+    <div id="content">
+        <div id="location-list-title">See all locations</div>
+        <div id="location-list"></div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <script>
@@ -320,27 +311,23 @@
         `,
                 imageUrl: 'https://pbs.twimg.com/tweet_video_thumb/GclcZmCaQAAgjuu.jpg', // Replace with your image URL
                 tweetCount: 1
+            },
+            {
+                coords: [40.75898, -73.98447],
+                locationName: "Times Square",
+                city: 'New York',
+                details: `
+            <div class="popup-content">
+                <h3>New York Times Square (TSX Broadway)</h3>
+                <p>https://maps.app.goo.gl/c5GDtu2HaMH9jCfM8</p>
+                <blockquote class="twitter-tweet"><p lang="in" dir="ltr">🚩🎂<br><br>[ 𝐌𝐀𝐑𝐂𝐊𝐑𝐈𝐒 𝐁𝐈𝐑𝐓𝐇𝐃𝐀𝐘 𝐏𝐑𝐎𝐉𝐄𝐂𝐓 𝐄𝐏. 𝟎𝟖 ]<br><br>20 TukTuk banners <br><br>📍Siam area, Bangkok <br>🗓️ 7-14 December 2024<a href="https://twitter.com/Marckrisk?ref_src=twsrc%5Etfw">@Marckrisk</a> <a href="https://twitter.com/hashtag/MARCKRIS?src=hash&amp;ref_src=twsrc%5Etfw">#MARCKRIS</a> <a href="https://twitter.com/hashtag/22ndMARCKRISquare?src=hash&amp;ref_src=twsrc%5Etfw">#22ndMARCKRISquare</a><a href="https://twitter.com/hashtag/BUSbecauseofyouishine?src=hash&amp;ref_src=twsrc%5Etfw">#BUSbecauseofyouishine</a> <a href="https://t.co/Wz6PVGvTUW">pic.twitter.com/Wz6PVGvTUW</a></p>&mdash; TEAM MARCKRIS (@TEAMMARCKRIS) <a href="https://twitter.com/TEAMMARCKRIS/status/1858117952736010697?ref_src=twsrc%5Etfw">November 17, 2024</a></blockquote>
+            </div>
+        `,
+                imageUrl: 'https://pbs.twimg.com/tweet_video_thumb/GclcZmCaQAAgjuu.jpg', // Replace with your image URL
+                tweetCount: 1
             }
 
         ];
-
-        // // Add a container for the list of locations
-        // const locationListContainer = document.createElement('div');
-        // locationListContainer.id = 'location-list';
-        // locationListContainer.style.padding = '10px';
-        // locationListContainer.style.backgroundColor = '#f8f9fa';
-        // locationListContainer.style.borderBottom = '1px solid #ddd';
-        // locationListContainer.style.overflowY = 'auto';
-        // locationListContainer.style.maxHeight = '10vh';
-        // locationListContainer.style.fontSize = '14px';
-        // document.body.insertBefore(locationListContainer, document.getElementById('map'));
-
-        // // Add the list of locations
-        // const locationList = document.createElement('ul');
-        // locationList.style.listStyleType = 'disc';
-        // locationList.style.paddingLeft = '20px';
-        // locationList.style.margin = '0';
-        // locationListContainer.appendChild(locationList);
 
         // Group locations by city
         const groupedLocations = {};
@@ -394,10 +381,11 @@
 
             // Add click event to zoom in on the map with offset
             element.addEventListener('click', function () {
-                const offset = map.getSize().y * 0.03; // Calculate 25% from the bottom
-                const targetPoint = map.project(location.coords).subtract([0, offset]);
+
+                const offset = map.getSize().y * 0.25;
+                const targetPoint = map.project(location.coords, 16).subtract([0, offset]);
                 const targetLatLng = map.unproject(targetPoint);
-                map.setView(targetLatLng, 16); // Adjust the zoom level as needed
+                map.setView(targetLatLng, 16);
             });
 
             marker.bindPopup(location.details);
@@ -406,32 +394,7 @@
             marker.on('popupopen', function () {
                 twttr.widgets.load();
             });
-            // // Add location to the list
-            // const listItem = document.createElement('li');
-            // listItem.textContent = location.locationName;
-            // listItem.style.cursor = 'pointer';
-            // listItem.style.color = '#007bff';
-            // listItem.style.textDecoration = 'underline';
-            // listItem.addEventListener('click', function () {
-            //     const offset = map.getSize().y * 0.25; // Calculate 25% from the bottom
-            //     const targetPoint = map.project(location.coords).subtract([0, offset]);
-            //     const targetLatLng = map.unproject(targetPoint);
-            //     map.setView(targetLatLng, 16); // Adjust the zoom level as needed
-            //     marker.openPopup(); // Open the popup
-            // });
-            // locationList.appendChild(listItem);
-        });
-        // Toggle the visibility of the location list
-        const locationListTitle = document.getElementById('location-list-title');
-        locationListTitle.addEventListener('click', () => {
-            const locationList = document.getElementById('location-list');
-            if (locationList.style.display === 'none' || locationList.style.display === '') {
-                locationList.style.display = 'block';
-                locationListTitle.textContent = 'Hide locations';
-            } else {
-                locationList.style.display = 'none';
-                locationListTitle.textContent = 'See all locations';
-            }
+
         });
     </script>
 </body>

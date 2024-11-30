@@ -19,7 +19,8 @@
             font-family: 'Poppins', sans-serif;
             font-size: clamp(14px, 1.5vw, 18px);
             overflow-y: auto;
-            /* Allow scrolling when content exceeds 100% height */
+            overflow-x: hidden;
+            /* Prevent horizontal scrolling */
         }
 
         #header {
@@ -36,15 +37,13 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            /* Prevent stretching */
             width: 100%;
+            max-width: 100%;
             flex: 1 1 auto;
-            /* Allow content to grow and shrink */
         }
 
         #static-text {
             flex: auto;
-            /* 1/3 of the width */
             padding: 0px 0px 0px 20px;
             background-color: white;
             border-right: 1px solid #ddd;
@@ -53,9 +52,14 @@
             /* Dynamically adjust font size */
         }
 
+        #location-list-container {
+            flex: 0 0 auto;
+            background-color: white;
+            border-bottom: 1px solid #ddd;
+        }
 
         #location-list-title {
-            padding: 10px;
+            padding: 20px;
             background-color: #f8f9fa;
             cursor: pointer;
             font-weight: bold;
@@ -66,12 +70,11 @@
 
         #location-list {
             display: block;
-            padding: 10px;
-            /* Keep padding for content spacing */
+            padding: 20px;
             margin: 0;
-            /* Remove unnecessary margin */
             background-color: white;
             width: 100%;
+            max-width: 100%;
         }
 
         .city-section {
@@ -87,6 +90,7 @@
             font-weight: bold;
             white-space: nowrap;
             width: 120px;
+            max-width: 100%;
             text-align: left;
         }
 
@@ -118,9 +122,12 @@
 
         #map {
             flex: 0 0 auto;
-            /* Prevent the map from shrinking */
-            width: 100%;
-            height: 80vh;
+            position: relative;
+            margin: 0 auto;
+            top: 10%;
+            width: 90%;
+            height: 70vh;
+            max-width: 100%;
         }
 
         .message-box {
@@ -179,8 +186,10 @@
         MARCKRIS 22nd Birthday Project Locations</div>
     <div id="map"></div>
     <div id="content">
-        <div id="location-list-title">See all locations</div>
-        <div id="location-list"></div>
+        <div id="location-list-container">
+            <div id="location-list-title">See all locations</div>
+            <div id="location-list"></div>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

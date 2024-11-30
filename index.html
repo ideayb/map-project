@@ -11,15 +11,15 @@
         body {
             margin: 0;
             padding: 0;
-            height: 100vh;
-            /* Ensure the body takes up the full viewport height */
+            min-height: 100vh;
+            /* Ensure the body takes at least the full viewport height */
             display: flex;
             flex-direction: column;
             background: white;
             font-family: 'Poppins', sans-serif;
-            /* Apply modern font */
             font-size: clamp(14px, 1.5vw, 18px);
-            /* Dynamically adjust font size */
+            overflow-y: auto;
+            /* Allow scrolling when content exceeds 100% height */
         }
 
         #header {
@@ -34,7 +34,12 @@
 
         #content {
             display: flex;
-            overflow: hidden;
+            flex-direction: column;
+            align-items: flex-start;
+            /* Prevent stretching */
+            width: 100%;
+            flex: 1 1 auto;
+            /* Allow content to grow and shrink */
         }
 
         #static-text {
@@ -48,26 +53,36 @@
             /* Dynamically adjust font size */
         }
 
-        #location-list {
-            flex: auto;
-            /* 2/3 of the width */
-            padding: 20px;
+        #location-list-container {
             background-color: white;
-            display: flex;
-            flex-direction: column;
-            /* Stack city sections vertically */
-            gap: 20px;
-            /* Add spacing between city sections */
-            overflow-x: auto;
+            border-bottom: 1px solid #ddd;
+            width: 100%;
+        }
+
+        #location-list-title {
+            padding: 10px;
+            background-color: #f8f9fa;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            width: 100%;
+        }
+
+        #location-list {
+            display: none;
+            padding: 10px;
+            /* Keep padding for content spacing */
+            margin: 0;
+            /* Remove unnecessary margin */
+            background-color: white;
+            width: 100%;
         }
 
         .city-section {
             display: flex;
-            /* Align city name and locations horizontally */
             align-items: flex-start;
-            /* Align city name and locations at the top */
-            gap: 0px;
-            /* Add spacing between city name and locations */
+            gap: 10px;
         }
 
         .city-section h4 {
@@ -76,13 +91,8 @@
             color: #343a40;
             font-weight: bold;
             white-space: nowrap;
-            /* Prevent city name from wrapping */
-            width: 100px;
-            /* Set a fixed width for city names */
+            width: 120px;
             text-align: left;
-            /* Align city names to the left */
-            line-height: 0;
-            /* Reduce vertical spacing between lines */
         }
 
         .city-section ul {
@@ -91,11 +101,8 @@
             margin: 0;
             display: flex;
             flex-wrap: wrap;
-            /* Allow locations to wrap to the next line if needed */
             gap: 10px;
-            /* Add spacing between locations */
-            line-height: 0;
-            /* Reduce vertical spacing between lines */
+            width: 100%;
         }
 
         .city-section li {
@@ -105,6 +112,7 @@
             text-decoration: none;
             font-family: 'Poppins', sans-serif;
             margin-bottom: 2px;
+            white-space: nowrap;
         }
 
         .city-section li:hover {
@@ -114,9 +122,11 @@
         }
 
         #map {
-            flex: 1 1 auto;
-            /* The map takes up the remaining space */
+            flex: 0 0 auto;
+            /* Prevent the map from shrinking */
             width: 100%;
+            height: 100vh;
+            /* Always take up 100% of the viewport height */
         }
 
         .message-box {
@@ -174,8 +184,11 @@
     <div id="header">🎁🦖✨<br>
         MARCKRIS 22nd Birthday Project Locations</div>
     <div id="content">
-        <!-- Location List Section -->
-        <div id="location-list"></div>
+        <!-- Collapsible Location List Section -->
+        <div id="location-list-container">
+            <div id="location-list-title">See all locations</div>
+            <div id="location-list"></div>
+        </div>
     </div>
     <div id="map"></div>
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -254,7 +267,7 @@
             },
             {
                 coords: [13.7453557, 100.534988],
-                locationName: "xxxxx",
+                locationName: "S-Curve Specialty Coffee Cafe",
                 city: 'Korat',
                 details: `
             <div class="popup-content">
@@ -407,6 +420,18 @@
             //     marker.openPopup(); // Open the popup
             // });
             // locationList.appendChild(listItem);
+        });
+        // Toggle the visibility of the location list
+        const locationListTitle = document.getElementById('location-list-title');
+        locationListTitle.addEventListener('click', () => {
+            const locationList = document.getElementById('location-list');
+            if (locationList.style.display === 'none' || locationList.style.display === '') {
+                locationList.style.display = 'block';
+                locationListTitle.textContent = 'Hide locations';
+            } else {
+                locationList.style.display = 'none';
+                locationListTitle.textContent = 'See all locations';
+            }
         });
     </script>
 </body>

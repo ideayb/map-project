@@ -87,7 +87,6 @@
         .city-section {
             display: flex;
             align-items: flex-start;
-            gap: 10px;
         }
 
         .city-section h4 {
@@ -107,7 +106,8 @@
             margin: 0;
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            row-gap: 0px;
+            column-gap: 10px;
             width: 100%;
 
         }
@@ -202,7 +202,7 @@
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <script>
-        // Initialize the map and set its view to a specific location and zoom level
+        // Initialize the map
         var map = L.map('map').setView([13.7864985, 100.5439119], 12);
 
         // Add OpenStreetMap tiles
@@ -211,243 +211,119 @@
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        // Define an array of locations with coordinates, details, and image URLs
-        var locations = [
-            {
-                coords: [13.8133689, 100.5619903],
-                locationName: 'Union Mall',
-                city: 'Bangkok',
-                details: `
-                    <div class="popup-content">
-                        <h3>Union Mall  
-                            <a href="https://maps.app.goo.gl/8ZL8MhCcjFYHWgPG7">
-                        (Map)
-                    </a></h3>
-                        <blockquote class="twitter-tweet"><p lang="th" dir="ltr">🏙️🎂<br><br>[ 𝐌𝐀𝐑𝐂𝐊𝐑𝐈𝐒 𝐁𝐈𝐑𝐓𝐇𝐃𝐀𝐘 𝐏𝐑𝐎𝐉𝐄𝐂𝐓 𝐄𝐏. 𝟎𝟐 ]<br><br>MARCKRIS BIRTHDAY EVENT 2024<br><br>เตรียมพบกับงานอีเว้นท์ ที่รวบรวมทุกกิจกรรม และความสุข ภายใต้มวลความอบอุ่นของกลุ่มคนที่รักมาร์คคริสเข้าไว้ด้วยกัน <br><br>🗓️ 7-8 December 2024<br>⏰ 11:00 - 20:00 น.<br>📍G FL, UNION CO-EVENT… <a href="https://t.co/8m3A0Kkwiv">pic.twitter.com/8m3A0Kkwiv</a></p>&mdash; TEAM MARCKRIS (@TEAMMARCKRIS) <a href="https://twitter.com/TEAMMARCKRIS/status/1856290884339544290?ref_src=twsrc%5Etfw">November 12, 2024</a></blockquote>
-                        <blockquote class="twitter-tweet"><p lang="en" dir="ltr">🚩🎂<br><br>[ 𝐌𝐀𝐑𝐂𝐊𝐑𝐈𝐒 𝐁𝐈𝐑𝐓𝐇𝐃𝐀𝐘 𝐏𝐑𝐎𝐉𝐄𝐂𝐓 𝐄𝐏. 𝟎𝟑 ]<br><br>LED PILLAR 48 SCREENS<br><br>📍G FL, UNION MALL BKK<br>🗓️ 7-9 December 2024<a href="https://twitter.com/Marckrisk?ref_src=twsrc%5Etfw">@Marckrisk</a> <a href="https://twitter.com/hashtag/MARCKRIS?src=hash&amp;ref_src=twsrc%5Etfw">#MARCKRIS</a> <a href="https://twitter.com/hashtag/22ndMARCKRISquare?src=hash&amp;ref_src=twsrc%5Etfw">#22ndMARCKRISquare</a><a href="https://twitter.com/hashtag/BUSbecauseofyouishine?src=hash&amp;ref_src=twsrc%5Etfw">#BUSbecauseofyouishine</a> <a href="https://t.co/w79HsPUzIH">pic.twitter.com/w79HsPUzIH</a></p>&mdash; TEAM MARCKRIS (@TEAMMARCKRIS) <a href="https://twitter.com/TEAMMARCKRIS/status/1856654157224272233?ref_src=twsrc%5Etfw">November 13, 2024</a></blockquote>
-			<blockquote class="twitter-tweet"><p lang="en" dir="ltr">🚩🎂<br><br>[ 𝐌𝐀𝐑𝐂𝐊𝐑𝐈𝐒 𝐁𝐈𝐑𝐓𝐇𝐃𝐀𝐘 𝐏𝐑𝐎𝐉𝐄𝐂𝐓 𝐄𝐏. 𝟎𝟵 ]<br><br>Union Mall — Digital Media (15 screens) <br><br>📍 G FL, F1, F4, F5 UNION MALL BKK<br>🗓️ 7-9 December 2024<a href="https://twitter.com/Marckrisk?ref_src=twsrc%5Etfw">@Marckrisk</a> <a href="https://twitter.com/hashtag/MARCKRIS?src=hash&amp;ref_src=twsrc%5Etfw">#MARCKRIS</a> <a href="https://twitter.com/hashtag/22ndMARCKRISquare?src=hash&amp;ref_src=twsrc%5Etfw">#22ndMARCKRISquare</a><a href="https://twitter.com/hashtag/BUSbecauseofyouishine?src=hash&amp;ref_src=twsrc%5Etfw">#BUSbecauseofyouishine</a> <a href="https://t.co/c7rN3ZWf0c">pic.twitter.com/c7rN3ZWf0c</a></p>&mdash; TEAM MARCKRIS (@TEAMMARCKRIS) <a href="https://twitter.com/TEAMMARCKRIS/status/1858385967985627226?ref_src=twsrc%5Etfw">November 18, 2024</a></blockquote>
-			<blockquote class="twitter-tweet"><p lang="en" dir="ltr">🚩🎂<br><br>[ 𝐌𝐀𝐑𝐂𝐊𝐑𝐈𝐒 𝐁𝐈𝐑𝐓𝐇𝐃𝐀𝐘 𝐏𝐑𝐎𝐉𝐄𝐂𝐓 𝐄𝐏. 𝟭𝟬 ]<br><br>Union Mall — Backdrop<br><br>📍 F1, UNION MALL BKK (บริเวณทางเชื่อม BTS)<br>🗓️ 1 December 2024 - 5 January 2025<a href="https://twitter.com/Marckrisk?ref_src=twsrc%5Etfw">@Marckrisk</a> <a href="https://twitter.com/hashtag/MARCKRIS?src=hash&amp;ref_src=twsrc%5Etfw">#MARCKRIS</a> <a href="https://twitter.com/hashtag/22ndMARCKRISquare?src=hash&amp;ref_src=twsrc%5Etfw">#22ndMARCKRISquare</a><a href="https://twitter.com/hashtag/BUSbecauseofyouishine?src=hash&amp;ref_src=twsrc%5Etfw">#BUSbecauseofyouishine</a> <a href="https://t.co/0qi1KwZQJ6">pic.twitter.com/0qi1KwZQJ6</a></p>&mdash; TEAM MARCKRIS (@TEAMMARCKRIS) <a href="https://twitter.com/TEAMMARCKRIS/status/1858465163466379304?ref_src=twsrc%5Etfw">November 18, 2024</a></blockquote>
+        // Replace with your Google Sheet ID
+        const sheetID = "13jkV0-6QZ71pf0nfdP3Tw4azdlRhPz2Zfysg38-EHvI";
+        const sheetName = "Sheet1"; // Replace with your sheet name
+        const apiKey = "AIzaSyB22w-IC3io1dhkE6VXnn1qLz4lFFemKhE"; // Replace with your Google API key
+        const apiURL = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${sheetName}?key=${apiKey}`;
 
-                    </div>
-                `,
-                imageUrl: 'https://pbs.twimg.com/media/GcLetmvasAQxV-N?format=jpg&name=4096x4096', // Replace with your image URL
-                tweetCount: 4 // Number of tweets
-            },
-            {
-                coords: [13.7446343, 100.5298835],
-                locationName: 'MBK',
-                city: 'Bangkok',
-                details: `
-            <div class="popup-content">
-                <h3>MBK  
-                    <a href="https://maps.app.goo.gl/vuYQsPmZgtfvGQou5">
-                        (Map)
-                    </a></h3>
-                <blockquote class="twitter-tweet"><p lang="en" dir="ltr">🚩🎂<br><br>[ 𝐌𝐀𝐑𝐂𝐊𝐑𝐈𝐒 𝐁𝐈𝐑𝐓𝐇𝐃𝐀𝐘 𝐏𝐑𝐎𝐉𝐄𝐂𝐓 𝐄𝐏. 𝟎𝟒 ]<br><br>MBK MEGA LED<br><br>📍MBK Center<br>🗓️ 7-13 December 2024<a href="https://twitter.com/Marckrisk?ref_src=twsrc%5Etfw">@Marckrisk</a> <a href="https://twitter.com/hashtag/MARCKRIS?src=hash&amp;ref_src=twsrc%5Etfw">#MARCKRIS</a> <a href="https://twitter.com/hashtag/22ndMARCKRISquare?src=hash&amp;ref_src=twsrc%5Etfw">#22ndMARCKRISquare</a><a href="https://twitter.com/hashtag/BUSbecauseofyouishine?src=hash&amp;ref_src=twsrc%5Etfw">#BUSbecauseofyouishine</a> <a href="https://t.co/yJMAu6MQo1">pic.twitter.com/yJMAu6MQo1</a></p>&mdash; TEAM MARCKRIS (@TEAMMARCKRIS) <a href="https://twitter.com/TEAMMARCKRIS/status/1857015927495151854?ref_src=twsrc%5Etfw">November 14, 2024</a></blockquote>
-
-            </div>
-        `,
-                imageUrl: 'https://pbs.twimg.com/amplify_video_thumb/1857015667003715586/img/b7HJHa_wfeVUQB07.jpg', // Replace with your image URL
-                tweetCount: 1
-            },
-            {
-                coords: [13.7453557, 100.534988],
-                locationName: 'Siam',
-                city: 'Bangkok',
-                details: `
-            <div class="popup-content">
-                <h3>Siam Area</h3>
-                <blockquote class="twitter-tweet"><p lang="in" dir="ltr">🚩🎂<br><br>[ 𝐌𝐀𝐑𝐂𝐊𝐑𝐈𝐒 𝐁𝐈𝐑𝐓𝐇𝐃𝐀𝐘 𝐏𝐑𝐎𝐉𝐄𝐂𝐓 𝐄𝐏. 𝟎𝟖 ]<br><br>20 TukTuk banners <br><br>📍Siam area, Bangkok <br>🗓️ 7-14 December 2024<a href="https://twitter.com/Marckrisk?ref_src=twsrc%5Etfw">@Marckrisk</a> <a href="https://twitter.com/hashtag/MARCKRIS?src=hash&amp;ref_src=twsrc%5Etfw">#MARCKRIS</a> <a href="https://twitter.com/hashtag/22ndMARCKRISquare?src=hash&amp;ref_src=twsrc%5Etfw">#22ndMARCKRISquare</a><a href="https://twitter.com/hashtag/BUSbecauseofyouishine?src=hash&amp;ref_src=twsrc%5Etfw">#BUSbecauseofyouishine</a> <a href="https://t.co/Wz6PVGvTUW">pic.twitter.com/Wz6PVGvTUW</a></p>&mdash; TEAM MARCKRIS (@TEAMMARCKRIS) <a href="https://twitter.com/TEAMMARCKRIS/status/1858117952736010697?ref_src=twsrc%5Etfw">November 17, 2024</a></blockquote>
-            </div>
-        `,
-                imageUrl: 'https://pbs.twimg.com/tweet_video_thumb/GclcZmCaQAAgjuu.jpg', // Replace with your image URL
-                tweetCount: 1
-            },
-            {
-                coords: [18.79238, 98.95628],
-                locationName: "Taruka ชานมไข่มุก-สาขาหลัง มช.",
-                city: 'Chiang Mai',
-                details: `
-            <div class="popup-content">
-                <h3>Taruka ชานมไข่มุก-สาขาหลัง มช.  
-                    <a href="https://maps.app.goo.gl/Us2myB77MA6oQG2s5">
-                        (Map)
-                    </a></h3>
-            
-            </div>
-        `,
-                imageUrl: 'https://cdn-icons-png.flaticon.com/512/191/191166.png', // Replace with your image URL
-                tweetCount: 1
-            },
-            {
-                coords: [14.98078, 102.07632],
-                locationName: "The Mall Korat",
-                city: 'Korat',
-                details: `
-            <div class="popup-content">
-                <h3>The Mall Korat  
-                    <a href="https://maps.app.goo.gl/tJYL2dzXad1hruq18">
-                        (Map)
-                    </a></h3>
-                <blockquote class="twitter-tweet"><p lang="en" dir="ltr">🚩🎂<br><br>[ 𝐌𝐀𝐑𝐂𝐊𝐑𝐈𝐒 𝐁𝐈𝐑𝐓𝐇𝐃𝐀𝐘 𝐏𝐑𝐎𝐉𝐄𝐂𝐓 𝐄𝐏. 𝟎𝟱 ]<br><br>Facade Curved Screen - D1 &amp; D2 <br><br>📍The Mall Korat <br>🗓️ 7-13 December 2024<a href="https://twitter.com/Marckrisk?ref_src=twsrc%5Etfw">@Marckrisk</a> <a href="https://twitter.com/hashtag/MARCKRIS?src=hash&amp;ref_src=twsrc%5Etfw">#MARCKRIS</a> <a href="https://twitter.com/hashtag/22ndMARCKRISquare?src=hash&amp;ref_src=twsrc%5Etfw">#22ndMARCKRISquare</a><a href="https://twitter.com/hashtag/BUSbecauseofyouishine?src=hash&amp;ref_src=twsrc%5Etfw">#BUSbecauseofyouishine</a> <a href="https://t.co/4OhG1SFb1r">pic.twitter.com/4OhG1SFb1r</a></p>&mdash; TEAM MARCKRIS (@TEAMMARCKRIS) <a href="https://twitter.com/TEAMMARCKRIS/status/1859556670747312543?ref_src=twsrc%5Etfw">November 21, 2024</a></blockquote>
-            </div>
-        `,
-                imageUrl: 'https://pbs.twimg.com/amplify_video_thumb/1859556366534443010/img/mknTZI28GYJHpxGY.jpg', // Replace with your image URL
-                tweetCount: 1
-            },
-            {
-                coords: [14.99936, 102.11940],
-                locationName: "S-Curve Cafe",
-                city: 'Korat',
-                details: `
-            <div class="popup-content">
-                <h3>S-Curve Specialty Coffee Cafe  
-                    <a href="https://maps.app.goo.gl/wsEe1D4yC1eR9SEn9">
-                        (Map)
-                    </a></h3>
-            
-            </div>
-        `,
-                imageUrl: 'https://cdn-icons-png.flaticon.com/512/191/191166.png', // Replace with your image URL
-                tweetCount: 1
-            },
-            {
-                coords: [7.879759, 98.393144],
-                locationName: "MAO'S Café & bar",
-                city: 'Phuket',
-                details: `
-            <div class="popup-content">
-                <h3>MAO'S Café & bar  
-                    <a href="https://maps.app.goo.gl/dvrfGFG9bS8s7rZM7">
-                        (Map)
-                    </a></h3>
-            </div>
-        `,
-                imageUrl: 'https://cdn-icons-png.flaticon.com/512/191/191166.png', // Replace with your image URL
-                tweetCount: 1
-            },
-            {
-                coords: [3.14059, 101.70841],
-                locationName: "Cafe Cloud",
-                city: 'Malaysia',
-                details: `
-            <div class="popup-content">
-                <h3>Cafe Cloud  
-                    <a href="https://maps.app.goo.gl/WhtfP5U9KLJQcJpW7">
-                        (Map)
-                    </a></h3>
-            </div>
-        `,
-                imageUrl: 'https://cdn-icons-png.flaticon.com/512/191/191166.png', // Replace with your image URL
-                tweetCount: 1
-            },
-            {
-                coords: [17.96223, 102.61734],
-                locationName: "Shiba Cafe (Vientiane Center)",
-                city: 'Laos',
-                details: `
-            <div class="popup-content">
-                <h3>Shiba Hokkaido Milk Tea Laos  
-                    <a href="https://maps.app.goo.gl/XdJQzPtsAYpx2G8q7">
-                        (Map)
-                    </a></h3>
-            </div>
-        `,
-                imageUrl: 'https://cdn-icons-png.flaticon.com/512/191/191166.png', // Replace with your image URL
-                tweetCount: 1
-            },
-            {
-                coords: [40.75898, -73.98447],
-                locationName: "Times Square",
-                city: 'New York',
-                details: `
-            <div class="popup-content">
-                <h3>
-                    New York Times Square  
-                    <a href="https://maps.app.goo.gl/c5GDtu2HaMH9jCfM8">
-                        (Map)
-                    </a>
-                </h3>
-                <blockquote class="twitter-tweet"><p lang="en" dir="ltr">🚩🎂<br><br>[ 𝐌𝐀𝐑𝐂𝐊𝐑𝐈𝐒 𝐁𝐈𝐑𝐓𝐇𝐃𝐀𝐘 𝐏𝐑𝐎𝐉𝐄𝐂𝐓 𝐄𝐏. 𝟎𝟔 ]<br><br>Digital Billboard Times Square <br><br>📍TSX 1568 Boardway, New York, USA<br>🗓️ 12 December 2024, 12:00 PM (USA time) <a href="https://twitter.com/Marckrisk?ref_src=twsrc%5Etfw">@Marckrisk</a> <a href="https://twitter.com/hashtag/MARCKRIS?src=hash&amp;ref_src=twsrc%5Etfw">#MARCKRIS</a> <a href="https://twitter.com/hashtag/22ndMARCKRISquare?src=hash&amp;ref_src=twsrc%5Etfw">#22ndMARCKRISquare</a><a href="https://twitter.com/hashtag/BUSbecauseofyouishine?src=hash&amp;ref_src=twsrc%5Etfw">#BUSbecauseofyouishine</a> <a href="https://t.co/xA5On8DnLn">pic.twitter.com/xA5On8DnLn</a></p>&mdash; TEAM MARCKRIS (@TEAMMARCKRIS) <a href="https://twitter.com/TEAMMARCKRIS/status/1857741019158077601?ref_src=twsrc%5Etfw">November 16, 2024</a></blockquote>
-            </div>
-        `,
-                imageUrl: 'https://pbs.twimg.com/amplify_video_thumb/1857740960941355008/img/YFH06cD5-lSC8bsO.jpg', // Replace with your image URL
-                tweetCount: 1
-            }
-
-        ];
-
-        // Group locations by city
-        const groupedLocations = {};
-        locations.forEach((location) => {
-            if (!groupedLocations[location.city]) {
-                groupedLocations[location.city] = [];
-            }
-            groupedLocations[location.city].push(location);
-        });
-
-        // Create the location list dynamically
-        const locationList = document.getElementById('location-list');
-        Object.keys(groupedLocations).forEach((city) => {
-            // Create a section for each city
-            const citySection = document.createElement('div');
-            citySection.className = 'city-section';
-
-            // Add the city name as a header
-            const cityHeader = document.createElement('h4');
-            cityHeader.textContent = city;
-            citySection.appendChild(cityHeader);
-
-            // Add the list of locations for the city
-            const cityList = document.createElement('ul');
-            groupedLocations[city].forEach((location) => {
-                const listItem = document.createElement('li');
-                listItem.textContent = location.locationName;
-                listItem.addEventListener('click', () => {
-                    map.setView(location.coords, 16); // Zoom to the location
+        // Fetch data from Google Sheets
+        fetch(apiURL)
+            .then((response) => response.json())
+            .then((data) => {
+                const rows = data.values;
+                const headers = rows[0];
+                const locations = rows.slice(1).map((row) => {
+                    return headers.reduce((acc, header, index) => {
+                        acc[header] = row[index];
+                        return acc;
+                    }, {});
                 });
-                cityList.appendChild(listItem);
+
+                // Add locations to the map and location list
+                addLocationsToMap(locations);
+                populateLocationList(locations);
+            })
+            .catch((error) => console.error("Error fetching Google Sheet data:", error));
+
+        // Add locations to the map
+        function addLocationsToMap(locations) {
+            locations.forEach((location) => {
+                const coords = location.coords.split(",").map(Number);
+                const marker = L.marker(coords).addTo(map);
+
+                // Add popup with location details
+                const popupContent = `
+                    <div>
+                        <h3>${location.locationName}
+                            <a href=${location.mapUrl}>
+                        (Map)
+                    </a></h3>
+                        <p>${location.details}</p>
+                    </div>
+                `;
+                marker.bindPopup(popupContent);
+
+                // Add custom icon with image
+                var customIcon = L.divIcon({
+                    className: 'message-box',
+                    html: `<div class="badge">${location.tweetCount}</div>`,
+                    iconSize: [80, 70],
+                    iconAnchor: [40, 75],
+                    popupAnchor: [0, -70]
+                });
+
+                marker.setIcon(customIcon);
+                const element = marker.getElement();
+                if (element) {
+                    element.style.backgroundImage = `url(${location.imageUrl})`;
+                    element.style.backgroundSize = "cover";
+
+                    // Add click event to zoom in with offset
+                    element.addEventListener('click', function () {
+                        const offset = map.getSize().y * 0.3; // Adjust offset as needed
+                        const targetPoint = map.project(coords, 16).subtract([0, offset]);
+                        const targetLatLng = map.unproject(targetPoint);
+                        map.setView(targetLatLng, 16); // Center the map with offset
+                    });
+                }
+                marker.on('popupopen', function () {
+                    twttr.widgets.load();
+                });
+            });
+        }
+
+        // Populate the location list with unique locations
+        function populateLocationList(locations) {
+            const groupedLocations = {};
+
+            // Group locations by city and ensure uniqueness
+            locations.forEach((location) => {
+                if (!groupedLocations[location.city]) {
+                    groupedLocations[location.city] = new Map(); // Use a Map to ensure uniqueness
+                }
+                groupedLocations[location.city].set(location.locationName, location); // Use locationName as the key
             });
 
-            citySection.appendChild(cityList);
-            locationList.appendChild(citySection);
-        });
+            const locationList = document.getElementById('location-list');
+            Object.keys(groupedLocations).forEach((city) => {
+                const citySection = document.createElement('div');
+                citySection.className = 'city-section';
 
-        // Add markers for each location using custom icons
-        locations.forEach(function (location) {
-            var customIcon = L.divIcon({
-                className: 'message-box',
-                html: `<div class="badge">${location.tweetCount}</div>`,
-                iconSize: [80, 70],
-                iconAnchor: [40, 70],
-                popupAnchor: [0, -70]
+                const cityHeader = document.createElement('h4');
+                cityHeader.textContent = city;
+                citySection.appendChild(cityHeader);
+
+                const cityList = document.createElement('ul');
+                groupedLocations[city].forEach((location) => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = location.locationName;
+                    listItem.addEventListener('click', () => {
+                        const coords = location.coords.split(",").map(Number);
+                        map.setView(coords, 16); // Zoom to the location
+                    });
+                    cityList.appendChild(listItem);
+                });
+
+                citySection.appendChild(cityList);
+                locationList.appendChild(citySection);
             });
+        }
 
-            var marker = L.marker(location.coords, { icon: customIcon }).addTo(map);
-            var element = marker.getElement();
-            element.style.backgroundImage = `url(${location.imageUrl})`;
-
-            // Add click event to zoom in on the map with offset
-            element.addEventListener('click', function () {
-
-                const offset = map.getSize().y * 0.3;
-                const targetPoint = map.project(location.coords, 16).subtract([0, offset]);
-                const targetLatLng = map.unproject(targetPoint);
-                map.setView(targetLatLng, 16);
-            });
-
-            marker.bindPopup(location.details);
-
-            // Ensure Twitter widgets are rendered when the popup opens
-            marker.on('popupopen', function () {
-                twttr.widgets.load();
-            });
-
-        });
+        // Zoom out to level 2 when "See all locations" is clicked
         const locationListTitle = document.getElementById('location-list-title');
         locationListTitle.addEventListener('click', () => {
-            // Zoom out to level 2
-            map.setView([13.62312, 20.03906], 1);
+            map.setView([13.62312, 20.03906], 1); // Zoom out to level 2
         });
     </script>
 </body>
